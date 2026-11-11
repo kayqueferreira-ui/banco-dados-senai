@@ -39,12 +39,6 @@ CREATE TABLE `componentes_maq` (
 -- Despejando dados para a tabela `componentes_maq`
 --
 
-INSERT INTO `componentes_maq` (`id_componente`, `id_maquina`, `nome_componente`, `horas_uso_acumulado`, `limites_horas_alerta`) VALUES
-(1, 1, 'Motor Elétrico', 350, 500),
-(2, 2, 'Sistema Hidráulico', 280, 300),
-(3, 3, 'Correia Transportadora', 200, 400),
-(4, 4, 'Braço Robótico', 550, 600),
-(5, 5, 'Eixo Principal', 420, 450);
 
 -- --------------------------------------------------------
 
@@ -64,12 +58,6 @@ CREATE TABLE `estoque_pecas` (
 -- Despejando dados para a tabela `estoque_pecas`
 --
 
-INSERT INTO `estoque_pecas` (`id_pecas`, `codigo_part_number`, `descricao`, `qtd_estoque`, `preco_unitario`) VALUES
-(1, 'PEC-001', 'Rolamento Industrial', 20, 150.00),
-(2, 'PEC-002', 'Correia de Transmissão', 15, 85.50),
-(3, 'PEC-003', 'Motor Elétrico 2CV', 5, 950.00),
-(4, 'PEC-004', 'Sensor de Temperatura', 30, 120.00),
-(5, 'PEC-005', 'Válvula Hidráulica', 10, 275.00);
 
 -- --------------------------------------------------------
 
@@ -90,12 +78,6 @@ CREATE TABLE `historico_sensores` (
 -- Despejando dados para a tabela `historico_sensores`
 --
 
-INSERT INTO `historico_sensores` (`id_leitura`, `id_ordem`, `temperatura_medida`, `vibracao_mm_s`, `data_hora_leitura`, `prompt_geracao_ia`) VALUES
-(1, 1, 65.50, 2.30, '2026-10-01 08:45:00', 'analise_temperatura'),
-(2, 2, 82.40, 4.50, '2026-10-05 09:30:00', 'analise_vibracao'),
-(3, 3, 95.20, 6.80, '2026-10-10 10:30:00', 'alerta_maquina'),
-(4, 4, 58.70, 1.90, '2026-10-15 14:00:00', 'analise_preventiva'),
-(5, 5, 105.30, 8.20, '2026-10-20 14:30:00', 'risco_superaquecimento');
 
 -- --------------------------------------------------------
 
@@ -113,12 +95,7 @@ CREATE TABLE `linhas_producao` (
 -- Despejando dados para a tabela `linhas_producao`
 --
 
-INSERT INTO `linhas_producao` (`id_linha`, `id_unidade`, `nome_linha`) VALUES
-(1, 1, 'Linha de Montagem'),
-(2, 2, 'Linha de Soldagem'),
-(3, 3, 'Linha de Usinagem'),
-(4, 4, 'Linha de Pintura'),
-(5, 5, 'Linha de Embalagem');
+
 
 -- --------------------------------------------------------
 
@@ -139,14 +116,7 @@ CREATE TABLE `maquinas_senai` (
 -- Despejando dados para a tabela `maquinas_senai`
 --
 
-INSERT INTO `maquinas_senai` (`id_maquina`, `id_linha`, `id_tipo`, `tag_patrimonio`, `data_aquisicao`, `status_operacao`) VALUES
-(1, 1, 1, 'SENAI-MAQ-001', '2022-03-15', 'operando'),
-(2, 2, 2, 'SENAI-MAQ-002', '2021-07-20', 'operando'),
-(3, 3, 3, 'SENAI-MAQ-003', '2023-01-10', 'manutencao'),
-(4, 4, 4, 'SENAI-MAQ-004', '2022-11-05', 'operando'),
-(5, 5, 5, 'SENAI-MAQ-005', '2024-02-18', 'parada');
-
--- --------------------------------------------------------
+---
 
 --
 -- Estrutura para tabela `ordens_servico`
@@ -165,12 +135,7 @@ CREATE TABLE `ordens_servico` (
 -- Despejando dados para a tabela `ordens_servico`
 --
 
-INSERT INTO `ordens_servico` (`id_ordem`, `id_maquina`, `id_tecnico`, `data_abertura`, `tipo_manutencao`, `status_os`) VALUES
-(1, 1, 1, '2026-10-01 08:30:00', 'preventiva', 'concluida'),
-(2, 2, 2, '2026-10-05 09:00:00', 'corretiva', 'em andamento'),
-(3, 3, 3, '2026-10-10 10:15:00', 'preditiva', 'aberta'),
-(4, 4, 4, '2026-10-15 13:30:00', 'preventiva', 'concluida'),
-(5, 5, 5, '2026-10-20 14:00:00', 'corretiva', 'aberta');
+
 
 -- --------------------------------------------------------
 
@@ -189,13 +154,6 @@ CREATE TABLE `pecas_os` (
 -- Despejando dados para a tabela `pecas_os`
 --
 
-INSERT INTO `pecas_os` (`id_ordem`, `id_pecas`, `qtd_utilizada`, `preco_aplicado`) VALUES
-(1, 1, 2, 150.00),
-(2, 2, 1, 85.50),
-(3, 3, 1, 950.00),
-(4, 4, 2, 120.00),
-(5, 5, 1, 275.00);
-
 -- --------------------------------------------------------
 
 --
@@ -213,12 +171,7 @@ CREATE TABLE `tecnicos` (
 -- Despejando dados para a tabela `tecnicos`
 --
 
-INSERT INTO `tecnicos` (`id_tecnico`, `nome_tecnico`, `especialidade`, `nivel_certificado`) VALUES
-(1, 'Carlos Henrique', 'Mecânica Industrial', 'SENIOR'),
-(2, 'Ana Paula', 'Elétrica Industrial', 'PLENO'),
-(3, 'Roberto Silva', 'Automação Industrial', 'SPECIALIST'),
-(4, 'Mariana Costa', 'Hidráulica', 'JUNIOR'),
-(5, 'João Pedro', 'Usinagem', 'PLENO');
+
 
 -- --------------------------------------------------------
 
@@ -236,12 +189,7 @@ CREATE TABLE `tipo_maquina` (
 -- Despejando dados para a tabela `tipo_maquina`
 --
 
-INSERT INTO `tipo_maquina` (`id_tipo`, `nome_tipo`, `horas_revisao_padrao`) VALUES
-(1, 'Torno CNC', 500),
-(2, 'Prensa Hidráulica', 300),
-(3, 'Esteira Transportadora', 400),
-(4, 'Robô Industrial', 600),
-(5, 'Fresadora CNC', 450);
+
 
 -- --------------------------------------------------------
 
@@ -259,12 +207,6 @@ CREATE TABLE `unidades_senai` (
 -- Despejando dados para a tabela `unidades_senai`
 --
 
-INSERT INTO `unidades_senai` (`id_unidade`, `nome_unidade`, `cidade`) VALUES
-(1, 'SENAI Unidade Central', 'Umuarama'),
-(2, 'SENAI Unidade Industrial', 'Maringá'),
-(3, 'SENAI Unidade Norte', 'Londrina'),
-(4, 'SENAI Unidade Oeste', 'Cascavel'),
-(5, 'SENAI Unidade Sul', 'Curitiba');
 
 --
 -- Índices para tabelas despejadas
