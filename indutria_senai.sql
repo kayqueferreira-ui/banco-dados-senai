@@ -22,8 +22,56 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+-- Estrutura para tabela `unidades_senai`
+--
+
+CREATE TABLE `unidades_senai` (
+  `id_unidade` int NOT NULL,
+  `nome_unidade` varchar(100) NOT NULL,
+  `cidade` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Estrutura para tabela `linhas_producao`
+--
+
+CREATE TABLE `linhas_producao` (
+  `id_linha` int NOT NULL,
+  `id_unidade` int NOT NULL,
+  `nome_linha` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- Despejando dados para a tabela `linhas_producao`
+
+-- Estrutura para tabela `tipo_maquina`
+--
+
+CREATE TABLE `tipo_maquina` (
+  `id_tipo` int NOT NULL,
+  `nome_tipo` varchar(50) DEFAULT NULL,
+  `horas_revisao_padrao` int DEFAULT NULL
+) ;
+
+--
+-- Despejando dados para a tabela `tipo_maquina`
+
+
+-- Estrutura para tabela `maquinas_senai`
+--
+
+CREATE TABLE `maquinas_senai` (
+  `id_maquina` int NOT NULL,
+  `id_linha` int NOT NULL,
+  `id_tipo` int NOT NULL,
+  `tag_patrimonio` varchar(30) NOT NULL,
+  `data_aquisicao` date NOT NULL,
+  `status_operacao` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- Despejando dados para a tabela `maquinas_senai`
+
+
 -- Estrutura para tabela `componentes_maq`
 --
 
@@ -37,88 +85,20 @@ CREATE TABLE `componentes_maq` (
 
 --
 -- Despejando dados para a tabela `componentes_maq`
+
+-- Estrutura para tabela `tecnicos`
 --
 
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `estoque_pecas`
---
-
-CREATE TABLE `estoque_pecas` (
-  `id_pecas` int NOT NULL,
-  `codigo_part_number` varchar(50) DEFAULT NULL,
-  `descricao` varchar(150) NOT NULL,
-  `qtd_estoque` int NOT NULL,
-  `preco_unitario` decimal(10,2) NOT NULL
+CREATE TABLE `tecnicos` (
+  `id_tecnico` int NOT NULL,
+  `nome_tecnico` varchar(100) NOT NULL,
+  `especialidade` varchar(50) NOT NULL,
+  `nivel_certificado` varchar(30) NOT NULL
 ) ;
 
 --
--- Despejando dados para a tabela `estoque_pecas`
---
+-- Despejando dados para a tabela `tecnicos`
 
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `historico_sensores`
---
-
-CREATE TABLE `historico_sensores` (
-  `id_leitura` int NOT NULL,
-  `id_ordem` int NOT NULL,
-  `temperatura_medida` decimal(5,2) NOT NULL,
-  `vibracao_mm_s` decimal(5,2) NOT NULL,
-  `data_hora_leitura` datetime NOT NULL,
-  `prompt_geracao_ia` varchar(100) DEFAULT 'gerado_por_llm'
-) ;
-
---
--- Despejando dados para a tabela `historico_sensores`
---
-
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `linhas_producao`
---
-
-CREATE TABLE `linhas_producao` (
-  `id_linha` int NOT NULL,
-  `id_unidade` int NOT NULL,
-  `nome_linha` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `linhas_producao`
---
-
-
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `maquinas_senai`
---
-
-CREATE TABLE `maquinas_senai` (
-  `id_maquina` int NOT NULL,
-  `id_linha` int NOT NULL,
-  `id_tipo` int NOT NULL,
-  `tag_patrimonio` varchar(30) NOT NULL,
-  `data_aquisicao` date NOT NULL,
-  `status_operacao` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `maquinas_senai`
---
-
----
-
---
 -- Estrutura para tabela `ordens_servico`
 --
 
@@ -133,13 +113,22 @@ CREATE TABLE `ordens_servico` (
 
 --
 -- Despejando dados para a tabela `ordens_servico`
+
+
+-- Estrutura para tabela `estoque_pecas`
 --
 
-
-
--- --------------------------------------------------------
+CREATE TABLE `estoque_pecas` (
+  `id_pecas` int NOT NULL,
+  `codigo_part_number` varchar(50) DEFAULT NULL,
+  `descricao` varchar(150) NOT NULL,
+  `qtd_estoque` int NOT NULL,
+  `preco_unitario` decimal(10,2) NOT NULL
+) ;
 
 --
+-- Despejando dados para a tabela `estoque_pecas`
+
 -- Estrutura para tabela `pecas_os`
 --
 
@@ -154,61 +143,24 @@ CREATE TABLE `pecas_os` (
 -- Despejando dados para a tabela `pecas_os`
 --
 
--- --------------------------------------------------------
 
---
--- Estrutura para tabela `tecnicos`
+-- Estrutura para tabela `historico_sensores`
 --
 
-CREATE TABLE `tecnicos` (
-  `id_tecnico` int NOT NULL,
-  `nome_tecnico` varchar(100) NOT NULL,
-  `especialidade` varchar(50) NOT NULL,
-  `nivel_certificado` varchar(30) NOT NULL
+CREATE TABLE `historico_sensores` (
+  `id_leitura` int NOT NULL,
+  `id_ordem` int NOT NULL,
+  `temperatura_medida` decimal(5,2) NOT NULL,
+  `vibracao_mm_s` decimal(5,2) NOT NULL,
+  `data_hora_leitura` datetime NOT NULL,
+  `prompt_geracao_ia` varchar(100) DEFAULT 'gerado_por_llm'
 ) ;
 
 --
--- Despejando dados para a tabela `tecnicos`
---
+-- Despejando dados para a tabela `historico_sensores`
 
 
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `tipo_maquina`
---
-
-CREATE TABLE `tipo_maquina` (
-  `id_tipo` int NOT NULL,
-  `nome_tipo` varchar(50) DEFAULT NULL,
-  `horas_revisao_padrao` int DEFAULT NULL
-) ;
-
---
--- Despejando dados para a tabela `tipo_maquina`
---
-
-
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `unidades_senai`
---
-
-CREATE TABLE `unidades_senai` (
-  `id_unidade` int NOT NULL,
-  `nome_unidade` varchar(100) NOT NULL,
-  `cidade` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `unidades_senai`
---
-
-
---
 -- Índices para tabelas despejadas
 --
 
